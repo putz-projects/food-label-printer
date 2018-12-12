@@ -11,9 +11,12 @@ def print_init():
     """Print a message to indicate that the machine has restarted.
     """
 
-    r = requests.get("https://api.ipify.org")
-    ip = r.text
-    printer.print_message("I'm Alive!" + "\n" + ip)
+    try:
+        r = requests.get("https://api.ipify.org")
+        ip = r.text
+        printer.print_message("I'm Alive!" + "\n" + ip)
+    except:
+        printer.print_message("I'm Alive!\nNo Network :'(")
 
 def main_loop():
     ser = serial.Serial(SERIAL_PORT, BAUD)
