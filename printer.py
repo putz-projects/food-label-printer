@@ -3,6 +3,7 @@ import datetime
 import qrcode
 import time
 import subprocess
+import os
 
 def print_label(kerberos, date):
     """Prints a food label given a kerberos string and a datetime object.
@@ -32,6 +33,15 @@ def print_label(kerberos, date):
 
     # Print it!
     subprocess.call(["lp", "-o", "fit-to-page", "-o", "orientation-requested=6", "label.png"])
+
+def print_message(message):
+    if os.path.exists('print.txt'):
+        os.remove('print.txt')
+    with open('print.txt', 'w') as f:
+        f.write(message)
+
+    subprocess.call("lp", "print.txt")
+
 
 if __name__ == '__main__':
     print_label("shreyask", datetime.datetime.now())
