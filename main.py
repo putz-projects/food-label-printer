@@ -35,7 +35,7 @@ def main_loop():
             if kerb:
                 printer.print_label(kerb, datetime.datetime.now())
             else:
-                printer.print_message("LOLcode: " + lolcode)
+                printer.print_message("LOLcode: " + lolcode + "\nBring this to Shreyas!")
 
         ser.flushInput()
         time.sleep(DELAY)

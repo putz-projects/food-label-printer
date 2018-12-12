@@ -4,6 +4,7 @@
 import os
 import json
 import hashlib
+import lolcodes
 
 from config import USERS
 
@@ -63,7 +64,7 @@ def get_lolcode(code):
     return current_guess
 
 def get_kerb(lolcode):
-    return get_key(lolcode)
+    return lolcodes.lolcodes.get(lolcode, None)
 
 def set_kerb(lolcode, kerb):
     set_key(lolcode, kerb)

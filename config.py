@@ -5,7 +5,7 @@ SERIAL_PORT = "/dev/ttyACM0"
 BAUD = 9600
 
 # Delay between reads.
-DELAY = 3  # seconds.
+DELAY = 5  # seconds.
 
 # Users JSON file.
 USERS = "/home/pi/food-label-printer/users.json"
