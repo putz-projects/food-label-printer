@@ -23,10 +23,11 @@ def main_loop():
         lolcode = users.get_lolcode(msg)
         kerb = users.get_kerb(lolcode)
 
-        if kerb:
-            printer.print_label(kerb, datetime.datetime.now())
-        else:
-            printer.print_message("LOLcode: " + lolcode)
+        # if kerb:
+        #     printer.print_label(kerb, datetime.datetime.now())
+        # else:
+        #     printer.print_message("LOLcode: " + lolcode)
+        print(msg, lolcode)
 
         time.sleep(DELAY)
 
