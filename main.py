@@ -19,6 +19,8 @@ def main_loop():
     ser = serial.Serial(SERIAL_PORT, BAUD)
 
     while True:
+        ser.flushInput()
+        time.sleep(0.1)
         msg = ser.readline().decode().strip()
         lolcode = users.get_lolcode(msg)
         kerb = users.get_kerb(lolcode)
@@ -29,6 +31,7 @@ def main_loop():
         #     printer.print_message("LOLcode: " + lolcode)
         print(msg, lolcode)
 
+        ser.flushInput()
         time.sleep(DELAY)
 
 if __name__ == '__main__':
