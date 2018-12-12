@@ -31,7 +31,7 @@ def print_label(kerberos, date):
     img.save('label.png')
 
     # Print it!
-    # subprocess.call(["lp", "-o", "fit-to-page", "-o", "orientation-requested=6", "label.png"])
+    subprocess.call(["lp", "-o", "fit-to-page", "-o", "orientation-requested=6", "label.png"])
 
 if __name__ == '__main__':
     print_label("shreyask", datetime.datetime.now())
