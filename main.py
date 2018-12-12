@@ -22,14 +22,17 @@ def main_loop():
         ser.flushInput()
         time.sleep(0.1)
         msg = ser.readline().decode().strip()
-        lolcode = users.get_lolcode(msg)
-        kerb = users.get_kerb(lolcode)
 
-        # if kerb:
-        #     printer.print_label(kerb, datetime.datetime.now())
-        # else:
-        #     printer.print_message("LOLcode: " + lolcode)
-        print(msg, lolcode)
+        if msg != "":
+            lolcode = users.get_lolcode(msg)
+            kerb = users.get_kerb(lolcode)
+
+            print("LOLcode:", lolcode)
+
+            if kerb:
+                printer.print_label(kerb, datetime.datetime.now())
+            else:
+                printer.print_message("LOLcode: " + lolcode)
 
         ser.flushInput()
         time.sleep(DELAY)
