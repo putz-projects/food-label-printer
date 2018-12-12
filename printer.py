@@ -40,7 +40,7 @@ def print_message(message):
     with open('print.txt', 'w') as f:
         f.write(message)
 
-    subprocess.call("lp", "print.txt")
+    subprocess.call(["lp", "print.txt"])
 
 
 if __name__ == '__main__':
