@@ -2,6 +2,7 @@ from PIL import Image, ImageDraw, ImageFont
 import datetime
 import qrcode
 import time
+import subprocess
 
 def print_label(kerberos, date):
     """Prints a food label given a kerberos string and a datetime object.
@@ -10,8 +11,8 @@ def print_label(kerberos, date):
     # Initialize image and fonts.
     img = Image.new('RGB', (500, 200), color='white')
     font_regular = ImageFont.truetype('Roboto-Regular.ttf', 46)
-    font_light = ImageFont.truetype('Roboto-Light.ttf', 36)
-    font_italic = ImageFont.truetype('Roboto-LightItalic.ttf', 24)
+    font_light = ImageFont.truetype('Roboto-Regular.ttf', 36)
+    font_italic = ImageFont.truetype('Roboto-Regular.ttf', 24)
 
     # Draw the text.
     draw = ImageDraw.Draw(img)
@@ -25,8 +26,12 @@ def print_label(kerberos, date):
     qr.make(fit=True)
     qr = qr.make_image(fill_color='black', back_color='white')
     draw.bitmap((330, 30), qr, fill='black')
- 
+    
+    # Render the image out.
     img.save('label.png')
+
+    # Print it!
+    subprocess.call(["lp", "-o", "fit-to-page", "-o", "orientation-requested=6", "label.png"])
 
 if __name__ == '__main__':
     print_label("shreyask", datetime.datetime.now())
