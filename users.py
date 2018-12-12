@@ -5,35 +5,37 @@ import os
 import json
 import hashlib
 
+from config import USERS
+
 def get_key(key, default=None):
     rv = default
 
-    if not os.path.exists("users.json"):
+    if not os.path.exists(USERS):
         return rv
 
-    with open("users.json", "r") as f:
+    with open(USERS, "r") as f:
         j = json.loads(f.read())
         if key in j:
             rv = j[key]
     return rv
 
 def set_key(key, value):
-    if not os.path.exists("users.json"):
+    if not os.path.exists(USERS):
         j = {}
         j[key] = value
     else:
-        with open("users.json", "r") as f:
+        with open(USERS, "r") as f:
             j = json.loads(f.read())
             j[key] = value
 
-    with open("users.json", "w") as f:
+    with open(USERS, "w") as f:
         f.write(json.dumps(j))
 
 def value_exists(value):
-    if not os.path.exists("users.json"):
+    if not os.path.exists(USERS):
         return False
 
-    with open("users.json", "r") as f:
+    with open(USERS, "r") as f:
         j = json.loads(f.read())
         for k, v in j.items():
             if value == v:
